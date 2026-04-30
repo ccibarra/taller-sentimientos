@@ -27,6 +27,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "super-secret-key")
 
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+ALLOWED_DOMAIN = "gmail.com"  # Cambia esto por tu dominio de Workspace si es necesario
 
 # ==============================
 # VALIDAR TOKEN GOOGLE
@@ -41,8 +42,7 @@ def verify_google_token(token):
         )
 
         # Validar dominio Workspace
-        email = idinfo.get("email")
-        if not email.endswith("@gmail.com"):
+        if idinfo.get("hd") != ALLOWED_DOMAIN:
             return None
 
         return idinfo
