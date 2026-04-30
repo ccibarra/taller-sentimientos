@@ -41,9 +41,9 @@ def verify_google_token(token):
         )
 
         # Validar dominio Workspace
-    email = idinfo.get("email")
-    if not email.endswith("@gmail.com"):
-    return None
+        email = idinfo.get("email")
+        if not email.endswith("@gmail.com"):
+            return None
 
         return idinfo
 
